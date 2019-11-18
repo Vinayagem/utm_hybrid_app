@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Map of UTM</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="leaflet/leaflet.css" />
+  <script src="leaflet/leaflet.js"></script>
+
+</head>
+
+<body>
+  <div id="mapid" style="width: 600px; height: 400px;"></div>
+  <script>
+    var mymap = L.map('mapid').setView([-20.1772271, 57.467641], 16);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      maxZoom: 19,
+      attribution: 'Map data &copy;' +
+        '<a href="https://www.openstreetmap.org/">OpenStreetMap</a>' +
+        'contributors,<a href="https://creativecommons.org/licenses' +
+        '/by-sa/2.0/">CC-BY-SA</a>,Imagery © <a href="https://' +
+        'www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox.streets',
+      accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYyc' +
+        'XBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+    }).addTo(mymap);
+
+    var marker = L.marker([-20.1772271, 57.467641]).addTo(mymap);
+    marker.bindPopup("University Of Technology").openPopup();
+    var circle = L.circle([-20.1772271, 57.467641], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 200
+    }).addTo(mymap);
+    circle.bindPopup("University Of Technology");
+  </script>
+</body>
+
+</html>

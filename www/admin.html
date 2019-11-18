@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+  <link rel="stylesheet" href="css/jquery-confirm.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>
+  <script type="text/javascript" src="js/jquery-confirm.js"></script>
+  <script src="js/index.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <title>UTM</title>
+
+
+</head>
+
+<body>
+  <script type="text/javascript" src="cordova.js"></script>
+
+<!-- adminlogin -->
+  <div data-role="page"  id="adminlogin" data-title="Admin">
+    <div data-role="header">
+      <h1>Sign In</h1>
+      <a href="#index" class="ui-btn ui-shadow ui-btn-right ui-icon-home ui-btn-icon-notext ui-corner-all">Home</a>
+
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <label for="txtemail">Username</label>
+      <input type="text" name="txtemail" id="txtemail" placeholder="admin@gmail.com">
+      <label for="txtpassword">Password</label>
+      <input type="password" name="txtpassword" id="txtpassword" placeholder="**********">
+
+      <button id="btnsubmit" class="ui-btn ui-btn-b ui-corner-all" onclick="adminlogin();">Sign In</button>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h6>Copyright © 2019 University Of Technology.</h6>
+    </div>
+
+
+  </div>
+
+  <!-- dashboard -->
+  <div data-role="page" data-theme="a" id="admindashboard" data-title="Dashboard">
+
+    <div data-role="header">
+     <h4>Admin Panel</h4>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+
+      <div class="ui-grid-b text-center">
+        <div class="ui-block-a">
+          <a href="#adminnews" class="ui-btn ui-corner-all ui-shadow ui-icon-grid ui-btn-icon-bottom">Post News</a><br>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#adminevents" class="ui-btn ui-corner-all ui-shadow ui-icon-clock ui-btn-icon-bottom">Post Events</a><br>
+        </div>
+
+        <div class="ui-block-c">
+          <a href="#admintimetable" class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-bottom">Post Timetable</a><br>
+        </div>
+      </div>
+
+      <div class="ui-grid-b text-center">
+        <div class="ui-block-a">
+          <a href="#adminresult" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-bottom">Post Results</a><br>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#adminregister" class="ui-btn ui-corner-all ui-shadow ui-icon-location ui-btn-icon-bottom">Register Student</a><br>
+        </div>
+
+        <div class="ui-block-c">
+          <a href="#admindashboard" class="ui-btn ui-corner-all ui-shadow ui-icon-cloud ui-btn-icon-bottom">Home</a><br>
+        </div>
+      </div>
+
+      <div class="ui-grid-a text-center">
+        <button id="btnsubmit" class="ui-btn ui-btn-b ui-corner-all" onclick="logOut();">Logout</button>
+      </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      function logOut() {
+        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 1;
+        $.get(getresultsurl, function(data, status) {
+          if (data != "Exist") {
+            location.href = '#adminlogin';
+          } else {}
+        });
+      }
+
+      function check() {
+        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 2;
+        $.get(getresultsurl, function(data, status) {
+          if (data != "Exist") {
+            location.href = '#adminlogin';
+          } else {}
+        });
+      }
+    </script>
+
+    </script>
+  </div>
+
+  <!-- post news -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="adminnews" data-title="Post News">
+    <div data-role="header">
+      <h1>Post News </h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="title">Title : <span>*</span></label>
+        <input id="title" name="title" type="text" placeholder="Title">
+
+        <label for="desc">Description: <span>*</span></label>
+        <input id="desc" name="desc" type="text" placeholder="Description" />
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+     <a onclick="location.href='#viewnews';" class="ui-btn">View Posted News</a>
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(title, desc) {
+
+        alert("Message sent Successfully!");
+
+        var title = document.getElementById('title').value;
+
+        var desc = document.getElementById('desc').value;
+
+        var url = "http://localhost/coursework/postnews.php?title=" + title + " &desc=" + desc;
+
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+  <!-- view posted news -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="viewnews" data-title="News">
+    <div data-role="header">
+      <h1>News - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-transition="turn"></a>
+      <a onclick="location.href='#adminnews';" data-icon="back" data-iconpos="notext" data-transition="turn"></a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh" onload="news()">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Lastest News</h4>
+            <ul data-role="listview" data-inset="false" id="newslist" data-role="listview" data-filter="true" data-filter-placeholder="Search..."></ul>
+      </div>
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+              <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#viewnews", "pageinit", function() {
+        var getnewsurl = "http://localhost/coursework/news.php?operation=" + 1;
+        $.get(getnewsurl, function(data, status) {
+          var newsArr = JSON.parse(data);
+          if (newsArr != "not found") {
+            for (var i = 0; i < newsArr.length; i++) {
+
+              $("#newslist").prepend("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
+              i = i + 3;
+            }
+
+
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+
+  <!-- post event -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="adminevents" data-title="Post News">
+    <div data-role="header">
+      <h1>Post News </h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="title">Title : <span>*</span></label>
+        <input id="e_title" name="e_title" type="text" placeholder="Title">
+
+        <label for="desc">Description: <span>*</span></label>
+        <input id="e_desc" name="e_desc" type="text" placeholder="Description" />
+
+        <label for="date">Schedule Date: <span>*</span></label>
+        <input id="date" name="e_schedule_date" type="text" placeholder="yyyy-mon-dd" />
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+     <a onclick="location.href='#viewevents';" class="ui-btn">View Posted News</a>
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(title, desc, date) {
+
+        alert("Message sent Successfully!");
+
+        var title = document.getElementById('e_title').value;
+
+        var desc = document.getElementById('e_desc').value;
+
+        var date = document.getElementById('date').value;
+
+        var url = "http://localhost/coursework/postevents.php?title=" + title + " &desc=" + desc + " &date=" + date;
+        alert(url);
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+  <!-- viewevents -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="viewevents" data-title="News">
+    <div data-role="header">
+      <h1>Events - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-transition="turn"></a>
+      <a onclick="location.href='#adminevents';" data-icon="back" data-iconpos="notext" data-transition="turn"></a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh" onload="news()">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Events</h4>
+            <ul data-role="listview" data-inset="false" id="eventslist" data-role="listview" data-filter="true" data-filter-placeholder="Search..."></ul>
+      </div>
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+              <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#viewevents", "pageinit", function() {
+        var getnewsurl = "http://localhost/coursework/events.php?operation=" + 1;
+        $.get(getnewsurl, function(data, status) {
+          var newsArr = JSON.parse(data);
+          if (newsArr != "not found") {
+            for (var i = 0; i < newsArr.length; i++) {
+
+              $("#eventslist").prepend("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
+              i = i + 3;
+            }
+
+
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+
+  <!-- register student -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="adminregister" data-title="Register">
+    <div data-role="header">
+      <h1>Register Student </h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" >
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="fname">First Name : <span>*</span></label>
+        <input id="s_fname" name="s_fname" type="text" placeholder="e.g Jonh">
+
+        <label for="desc">Last Name: <span>*</span></label>
+        <input id="s_lname" name="s_lname" type="text" placeholder="e.g Matthew" />
+
+        <label for="date">Gender: <span>*</span></label>
+        <input id="s_gender" name="s_gender" type="text" placeholder="Male or Female" />
+
+        <label for="s_phone">Phone: <span>*</span></label>
+        <input id="s_phone" name="s_phone" type="text" placeholder="57661210" />
+
+        <label for="s_email">Email: <span>*</span></label>
+        <input id="s_email" name="s_email" type="text" placeholder="test@gmail.com" />
+
+        <label for="stu_id">Student Id: <span>*</span></label>
+        <input id="stu_id" name="stu_id" type="text" placeholder="e.g 1803_15589" />
+
+        <label for="s_password">Passowrd: <span>*</span></label>
+        <input id="s_password" name="s_password" type="text" placeholder="e.g ********" />
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
+
+        alert("Message sent Successfully!");
+
+        var s_fname = document.getElementById('s_fname').value;
+        var s_lname = document.getElementById('s_lname').value;
+        var s_gender = document.getElementById('s_gender').value;
+        var s_phone = document.getElementById('s_phone').value;
+        var s_email = document.getElementById('s_email').value;
+        var stu_id = document.getElementById('stu_id').value;
+        var s_password = document.getElementById('s_password').value;
+
+
+        var url = "http://localhost/coursework/register.php?s_fname=" + s_fname + " &s_lname=" + s_lname + " &s_gender=" + s_gender + " &s_phone=" + s_phone + " &s_email=" + s_email + " &stu_id=" + stu_id + " &s_password=" + s_password;
+        alert(url);
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+  <!-- view student -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="viewstudents" data-title="Students">
+    <div data-role="header">
+      <h1>Events - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-transition="turn"></a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext" data-transition="turn"></a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh" onload="news()">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Events</h4>
+            <ul data-role="listview" data-inset="false" id="studentslist" data-role="listview" data-filter="true" data-filter-placeholder="Search..."></ul>
+      </div>
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+              <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#viewevents", "pageinit", function() {
+        var getnewsurl = "http://localhost/coursework/viewstudent.php?operation=" + 1;
+        $.get(getnewsurl, function(data, status) {
+          var newsArr = JSON.parse(data);
+          if (newsArr != "not found") {
+            for (var i = 0; i < newsArr.length; i++) {
+
+              $("#studentslist").prepend("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
+              i = i + 3;
+            }
+
+
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+
+  <!-- post Timetable -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="admintimetable" data-title="Register">
+    <div data-role="header">
+      <h1>Timetable </h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" >
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="t_semester">Semester : <span>*</span></label>
+        <input id="t_semester" name="t_semester" type="text" placeholder="e.g 1 or 2">
+
+        <label for="t_year">Year: <span>*</span></label>
+        <input id="t_year" name="t_year" type="text" placeholder="e.g 2019" />
+
+        <label for="t_monday">Monday: <span>*</span></label>
+        <input id="t_monday" name="t_monday" type="text"  />
+
+        <label for="t_tuesday">Tuesday: <span>*</span></label>
+        <input id="t_tuesday" name="t_tuesday" type="text"  />
+
+        <label for="t_wednesday">Wednesday: <span>*</span></label>
+        <input id="t_wednesday" name="t_wednesday" type="text" />
+
+        <label for="t_thursday">Thursday: <span>*</span></label>
+        <input id="t_thursday" name="t_thursday" type="text" />
+
+        <label for="t_friday">Friday: <span>*</span></label>
+        <input id="t_friday" name="t_friday" type="text" />
+
+        <label for="t_saturday">Friday: <span>*</span></label>
+        <input id="t_saturday" name="t_saturday" type="text" />
+
+        <label for="t_sunday">Sunday: <span>*</span></label>
+        <input id="t_sunday" name="t_sunday" type="text" />
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
+
+        alert("Message sent Successfully!");
+
+        var t_semester = document.getElementById('t_semester').value;
+        var t_year = document.getElementById('t_year').value;
+        var t_monday = document.getElementById('t_monday').value;
+        var t_tuesday = document.getElementById('t_tuesday').value;
+        var t_wednesday = document.getElementById('t_wednesday').value;
+        var t_thursday = document.getElementById('t_thursday').value;
+        var t_friday = document.getElementById('t_friday').value;
+        var t_saturday = document.getElementById('t_saturday').value;
+        var t_sunday = document.getElementById('t_sunday').value;
+
+
+        var url = "http://localhost/coursework/posttimetable.php?t_semester=" + t_semester + " &t_year=" + t_year + " &t_monday=" + t_monday + " &t_tuesday=" + t_tuesday + " &t_wednesday=" + t_wednesday + " &t_thursday=" + t_thursday + " &t_friday=" + t_friday + " &t_saturday=" + t_saturday+ " &t_sunday=" + t_sunday;
+        alert(url);
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+  <!-- post result -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="adminresult" data-title="Post Result">
+    <div data-role="header">
+      <h1>Post Result </h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="r_semester">Semester : <span>*</span></label>
+        <input id="r_semester" name="r_semester" type="text" >
+
+        <label for="r_file">File: <span>*</span></label>
+        <input id="r_file" name="r_file" type="text"  />
+
+        <label for="r_desc">Description: <span>*</span></label>
+        <input id="r_desc" name="r_desc" type="text"  />
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#adminnews" data-transition="turn">News</a></li>
+                        <li><a href="#adminevents" data-transition="fade">Events</a></li>
+                        <li><a href="#adminresults" data-transition="fade">Results</a></li>
+                        <li><a href="#admintimetable" data-transition="fade">Timetable</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(r_semester, r_file, r_desc) {
+
+        alert("Message sent Successfully!");
+
+        var r_semester = document.getElementById('r_semester').value;
+
+        var r_file = document.getElementById('r_file').value;
+        var r_desc = document.getElementById('r_desc').value;
+
+        var url = "http://localhost/coursework/postresult.php?r_semester=" + r_semester + " &r_file=" + r_file + " &r_desc=" + r_desc;
+
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+
+
+
+
+
+</body>
+
+
+</html>

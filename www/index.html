@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+  <link rel="stylesheet" href="css/jquery-confirm.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>
+  <script type="text/javascript" src="js/jquery-confirm.js"></script>
+  <script src="js/index.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
+  <script src="https://unpkg.com/esri-leaflet"></script>
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css">
+  <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  <script src="https://kit.fontawesome.com/ca8e9033cf.js" crossorigin="anonymous"></script>
+  <script src="js/jquery.easing.js"></script>
+  <script src="js/jquery.mousewheel.js"></script>
+  <script defer src="js/jquery.flexslider.js"></script>
+
+
+  <title>UTM</title>
+
+
+</head>
+
+<body>
+  <script type="text/javascript" src="cordova.js"></script>
+
+  <!-- Index.html -->
+  <div data-role="page" data-theme="a" id="index" class="my-page">
+    <div data-role="header" data-position="fixed">
+      <h6>University of Technology</h6>
+      <a onclick="location.href='#index';" class="ui-btn ui-shadow ui-btn-left ui-icon-home ui-btn-icon-notext ui-corner-all" data-transition="slideup">Home</a>
+      <a href="#login" class="ui-shadow ui-btn ui-corner-all ui-btn-right" data-transition="slideup">Sign In</a>
+    </div>
+        <div role="main" class="ui-content">
+      <div>
+        <img src="image/a.jpg" style="width:100%;" />
+      </div>
+
+         <ul data-role="listview" data-inset="true">
+
+        <li>
+          <!-- <img src="images/utm.jpeg" alt="Min Pin" /> -->
+          <p>
+            <h6>Welcome to University Of </br>
+              Technology, Mauritius.</h6>
+          </p>
+
+          <a href="aboutus.html" class="text-center">Click here to see more about us</a>
+        </li>
+
+        <a href="https://www.facebook.com/University-of-Technology-Mauritius-UTM-1374759635989126/" class="text-center">Official Facebook Page</a>
+        <li>
+
+
+
+        </li>
+        <li>
+          <a href="events.html">
+                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <h2>Events</h2>
+                            <p>Please click here for more details.</p>
+                            <p class="ui-li-aside">Events 2019</p>
+                        </a></li>
+
+        <li><a href="news.html">
+                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <h2>News</h2>
+                            <p>Please click here for more details.</p>
+                            <p class="ui-li-aside">News 2019</p>
+                        </a></li>
+
+         <li><a href="courses.html">
+                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <h2>Courses</h2>
+                            <p>Please click here for more details.</p>
+                            <p class="ui-li-aside">Courses 2019</p>
+                        </a></li>
+
+        <a onclick="location.href='#map.html';" </a> <a href="map.html" class="ui-btn">Map</a>
+        <a onclick="location.href='admin.html#adminlogin';" class="ui-btn">Admin</a>
+
+
+
+      </ul>
+          
+    </div>
+    <div data-role="footer">
+      <h6>Copyright © 2019 University Of Technology.</h6>
+
+    </div>
+
+  </div>
+
+  <!-- login -->
+  <div data-role="page" data-theme="a" id="login" data-title="Sign In">
+    <div data-role="header">
+      <h1>Sign In</h1>
+      <a href="#index" class="ui-btn ui-shadow ui-btn-right ui-icon-home ui-btn-icon-notext ui-corner-all">Home</a>
+
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <label for="txtemail">Email Address</label>
+      <input type="text" name="txtemail" id="txtemail" placeholder="test@gmail.com">
+      <label for="txtpassword">Password</label>
+      <input type="password" name="txtpassword" id="txtpassword" placeholder="**********">
+
+      <button id="btnsubmit" class="ui-btn ui-btn-b ui-corner-all" onclick="login();">Sign In</button>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h6>Copyright © 2019 University Of Technology.</h6>
+    </div>
+
+  </div>
+
+  <!-- dashboard -->
+  <div data-role="page" data-theme="a" id="dashboard" data-title="Dashboard">
+
+    <div data-role="header">
+      <div class="topnav">
+        <a href="#dashboard">UTM</a>
+        <div id="myLinks">
+          <a href="#password">Update Password</a>
+          <a href="#contactus">Contact Us</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="flexslider">
+        <ul class="slides">
+          <li>
+            <img src="image/a.jpg" />
+          </li>
+          <li>
+            <img src="image/a.jpg" />
+          </li>
+          <li>
+            <img src="image/a.jpg" />
+          </li>
+        </ul>
+      </div>
+
+      <div class="ui-grid-b text-center">
+        <div class="ui-block-a">
+          <a href="#news" class="ui-btn ui-corner-all ui-shadow ui-icon-grid ui-btn-icon-bottom">News</a><br>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#events" class="ui-btn ui-corner-all ui-shadow ui-icon-clock ui-btn-icon-bottom">Events</a><br>
+        </div>
+
+        <div class="ui-block-c">
+          <a href="#timetable" class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-bottom">Timetable</a><br>
+        </div>
+      </div>
+
+      <div class="ui-grid-b text-center">
+        <div class="ui-block-a">
+          <a href="#results" class="ui-btn ui-corner-all ui-shadow ui-icon-bullets ui-btn-icon-bottom">Results</a><br>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#location" class="ui-btn ui-corner-all ui-shadow ui-icon-location ui-btn-icon-bottom">Location</a><br>
+        </div>
+
+        <div class="ui-block-c">
+          <a href="#weather" class="ui-btn ui-corner-all ui-shadow ui-icon-cloud ui-btn-icon-bottom">Weather</a><br>
+        </div>
+      </div>
+
+      <div class="ui-grid-a text-center">
+        <button id="btnsubmit" class="ui-btn ui-btn-b ui-corner-all" onclick="logOut();">Logout</button>
+      </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      function logOut() {
+        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 1;
+        $.get(getresultsurl, function(data, status) {
+          if (data != "Exist") {
+            location.href = '#index';
+          } else {}
+        });
+      }
+
+      function check() {
+        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 2;
+        $.get(getresultsurl, function(data, status) {
+          if (data != "Exist") {
+            location.href = '#index';
+          } else {}
+        });
+      }
+    </script>
+
+    </script>
+  </div>
+
+  <!-- news -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="news" data-title="News">
+    <div data-role="header">
+      <h1>News - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-transition="turn"></a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext" data-transition="turn"></a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh" onload="news()">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Lastest News</h4>
+            <ul data-role="listview" data-inset="false" id="newslist" data-role="listview" data-filter="true" data-filter-placeholder="Search..."></ul>
+      </div>
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+              <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#news", "pageinit", function() {
+        var getnewsurl = "http://localhost/coursework/news.php?operation=" + 1;
+        $.get(getnewsurl, function(data, status) {
+          var newsArr = JSON.parse(data);
+          if (newsArr != "not found") {
+            for (var i = 0; i < newsArr.length; i++) {
+
+              $("#newslist").prepend("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
+              i = i + 3;
+            }
+
+
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+  <!-- events -->
+
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="events" data-title="Events">
+    <div data-role="header">
+      <h1>Events - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Lastest Events</h4>
+            <ul data-role="listview" data-inset="false" id="eventslist" data-role="listview" data-filter="true" data-filter-placeholder="Search...">
+
+              </ul>
+      </div>
+
+    </div>
+
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#events", "pageinit", function() {
+        var geteventsurl = "http://localhost/coursework/events.php?operation=" + 1;
+        $.get(geteventsurl, function(data, status) {
+          var eventsArr = JSON.parse(data);
+          if (eventsArr != "not found") {
+            for (var i = 0; i < eventsArr.length; i++) {
+              $("#eventslist").prepend("<div data-role='collapsible'><h4>" + eventsArr[i + 1] + "</h4><h4>Posted On:  " + eventsArr[i + 3] + "</h4><p>Posted For:  " + eventsArr[i + 4] + ".</p><p>" + eventsArr[i + 2] + ".</p></div>");
+              i = i + 4;
+            }
+
+          } else {}
+        });
+
+      });
+    </script>
+  </div>
+
+  <!-- timetable -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="timetable" data-title="Timetable">
+    <div data-role="header" data-position="fixed">
+      <h1>Timetables - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Timetable</h4>
+            <ul data-role="listview" data-inset="false" id="timetablelist" data-role="listview" data-filter="true" data-filter-placeholder="Search...">
+
+              </ul>
+      </div>
+    </div>
+
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#timetable", "pageinit", function() {
+        var gettimetablesurl = "http://localhost/coursework/timetable.php?operation=" + 1;
+        $.get(gettimetablesurl, function(data, status) {
+          var timetablesArr = JSON.parse(data);
+          if (timetablesArr != "not found") {
+            for (var i = 0; i < timetablesArr.length; i++) {
+              $("#timetablelist").prepend("<div data-role='collapsible'><h4>" + "Year  " + timetablesArr[i + 1] + "  Semester  " + timetablesArr[i + 2] + "</h4><h4>Posted On:  " + timetablesArr[i + 4] + "</h4><p>" + timetablesArr[i + 3] +
+                ".</p><ul data-role='listview' data-inset='true'><li>Monday:  " + timetablesArr[i + 5] + "</li><li>Tuesday:  " + timetablesArr[i + 6] +
+                "</li><li>Wednesday:  " + timetablesArr[i + 7] + "</li><li>Thursday:  " + timetablesArr[i + 8] + "</li><li>Friday:  " + timetablesArr[i + 9] + "</li><li>Saturday:  " + timetablesArr[i + 10] + "</li><li>Sunday:  " +
+                timetablesArr[i + 11] + "</li></ul></div>");
+              i = i + 11;
+            }
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+
+  <!-- location -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="location" data-title="Location">
+    <div data-role="header">
+      <h1>Locations - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div id="mapid" style="height: 80vh;"></div>
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+    <script type="text/javascript">
+      $(document).delegate("#location", "pageinit", function() {
+        if (navigator.geolocation == undefined) {
+          alert("Geolocation undefined");
+        } else {
+          navigator.geolocation.getCurrentPosition(userLocated, locationError);
+
+          function userLocated(position) {
+            var latitude = -20.17684903710942;
+            var longitude = 57.467379473529945;
+
+            var mymap = L.map('mapid').setView([-20.20665, 57.6755], 10.4);
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+              maxZoom: 19,
+              attribution: 'Map data &copy;<a href="https://www.openstreetmap.org/">OpenStreetMap</a>contributors,<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+              id: 'mapbox.streets',
+              accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+            }).addTo(mymap);
+
+            L.easyButton('fa-refresh', function() {
+              location.reload();
+              mymap.setView([-20.20665, 57.6755], 10.4);
+            }).addTo(mymap);
+
+            L.easyButton('fa-home', function() {
+              mymap.setView([latitude, longitude], 18.1);
+              var marker = L.marker([latitude, longitude]).addTo(mymap);
+              marker.bindPopup("University of Mauritius").closePopup();
+            }).addTo(mymap);
+
+            var searchControl = L.esri.Geocoding.geosearch().addTo(mymap);
+            var results = new L.LayerGroup().addTo(mymap);
+            searchControl.on('results', function(data) {
+              results.clearLayers();
+              for (var i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+              }
+            });
+
+            var geocodeService = L.esri.Geocoding.geocodeService();
+            mymap.on('click', function(e) {
+              geocodeService.reverse().latlng(e.latlng).run(function(error, result) {
+                if (error) {
+                  return;
+                }
+                var popLocation = e.latlng;
+                var popup = L.popup()
+                  .setLatLng(popLocation)
+                  .setContent(result.address.Match_addr)
+                  .openOn(mymap);
+              });
+            });
+          }
+
+          function locationError(error) {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                alert("Permission Denied- " + error.message);
+                break;
+              case error.POSITION_UNAVAILABLE:
+                alert("Position Not Available- " + error.message);
+                break;
+              case error.TIMEOUT:
+                alert("Request Time out- " + error.message);
+                break;
+            }
+          }
+        }
+
+      });
+    </script>
+
+  </div>
+
+  <!-- password -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="password" data-title="Change Password">
+    <div data-role="header">
+      <h1>Password - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="ui-body ui-body-a ui-corner-all">
+        <label for="currpass">Current Password:</label>
+        <input type="password" name="currpass" id="currpass" placeholder="**********" autocomplete="off">
+
+        <label for="newpass">New Password:</label>
+        <input type="password" name="newpass" id="newpass" placeholder="**********" autocomplete="off">
+
+        <label for="renewpass">Retype New Password:</label>
+        <input type="password" name="renewpass" id="renewpass" placeholder="**********" autocomplete="off">
+
+
+        <button onclick="ChangePasswordForm();" class="ui-shadow ui-btn ui-corner-all">Change Password</button>
+
+
+
+      </div>
+
+      <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+        <ul data-role="listview">
+                       <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+          <li><a href="#news" data-transition="turn">News</a></li>
+                          <li><a href="#events" data-transition="turn">Events</a></li>
+                          <li><a href="#results" data-transition="turn">Results</a></li>
+                          <li><a href="#timetable" data-transition="turn">Timetable</a></li>
+                          <li><a href="#location" data-transition="turn">Location</a></li>
+                          <li><a href="#weather" data-transition="turn">Weather</a></li>
+                          <li><a href="#password" data-transition="turn">Update Password</a></li>
+                          <li><a href="#aboutus" data-transition="turn">About Us</a></li>
+                  
+        </ul>
+         
+      </div>
+    </div>
+
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+    <script type="text/javascript">
+      function ChangePasswordForm() {
+        var currpass = document.getElementById('currpass').value;
+        var newpass = document.getElementById('newpass').value;
+        var renewpass = document.getElementById('renewpass').value;
+
+        var getcontacturl = "http://localhost/coursework/password.php?currpass=" + currpass.trim() + "&newpass=" + newpass.trim() + "&renewpass=" + renewpass.trim();
+        $.get(getcontacturl, function(data, status) {
+          if (data == "Success") {
+            $.alert({
+              title: 'Password Successfully Changed!',
+              content: "",
+              closeIcon: true,
+              buttons: {
+                Okay: function() {
+                  window.location.href = '#login';
+                }
+              }
+            });
+          } else {
+            $.alert({
+              title: 'Message',
+              content: data,
+              closeIcon: true
+            });
+          }
+        });
+      }
+    </script>
+
+  </div>
+
+  <!-- contact -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="contactus" data-title="Contact Us">
+    <div data-role="header">
+      <h1>Contact Us - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div class="ui-body ui-body-a ui-corner-all">
+
+        <label for="name">Subject : <span>*</span></label>
+        <input id="subject" name="subject" type="text" placeholder="subject">
+
+        <label for="email">Email: <span>*</span></label>
+        <input id="email" name="email" type="text" placeholder="email" />
+
+        <label for="info">Message:</label>
+        <textarea id="message" name="message" rows="20" cols="80" placeholder="Enter your Message"></textarea>
+
+        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+      </div>
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script>
+      function submitMessage(subject, email, message) {
+
+        alert("Message sent Successfully!");
+
+        var subject = document.getElementById('subject').value;
+
+        var email = document.getElementById('email').value;
+
+        var message = document.getElementById('message').value;
+
+        var url = "http://localhost/coursework/contactprocess.php?subject=" + subject + " &email=" + email + " &message=" + message;
+
+        $.get(url, function(data, status) {
+          alert("data: " + data);
+        });
+
+      }
+    </script>
+
+  </div>
+
+  <!-- result -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="results" data-title="Result">
+    <div data-role="header">
+      <h1>Result - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext">Add</a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true">
+      <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+            <h4>Result</h4>
+            <ul data-role="listview" data-inset="false" id="resultslist" data-role="listview" data-filter="true" data-filter-placeholder="Search...">
+
+              </ul>
+      </div>
+
+    </div>
+
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+      <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+       
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+    <script type="text/javascript">
+      $(document).delegate("#results", "pageinit", function() {
+        var getresultsurl = "http://localhost/coursework/results.php?operation=" + 1;
+        $.get(getresultsurl, function(data, status) {
+          var resultsArr = JSON.parse(data);
+          if (resultsArr != "not found") {
+            for (var i = 0; i < resultsArr.length; i++) {
+              $("#resultslist").prepend("<div data-role='collapsible'><h4>" + "Semester: " + resultsArr[i + 1] + "  Posted Date:  " + resultsArr[i + 2] + "</h4><h4>Description:  " + resultsArr[i + 3] + "</h4><p>" + resultsArr[i + 4] +
+                ".</p><button>Download</button></div>");
+              i = i + 4;
+            }
+          } else {}
+        });
+
+      });
+    </script>
+
+  </div>
+
+  <!-- weather -->
+  <div data-role="page" class="jqm-demos ui-responsive-panel" id="weather" data-title="Weather">
+    <div data-role="header">
+      <h1>Weather - University of Technology</h1>
+      <a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-transition="turn"></a>
+      <a onclick="location.href='#dashboard';" data-icon="back" data-iconpos="notext" data-transition="turn"></a>
+    </div>
+
+    <div role="main" class="ui-content" data-fullscreen="true" id="newsrefresh">
+
+
+      <div class="flex items-center justify-center p-8">
+
+        <div class="flex mb-4">
+          <div class="w-full text-center">
+
+            <div class="max-w-sm bg-white shadow-lg rounded p-3">
+              <div class="timeBlock border border-gray-100 my-2 p-2">
+                <h4>Date and Time</h4>
+                <span id="date"></span> | <span id="time"></span>
+              </div>
+              <form>
+                <div class="max-w-sm my-3">
+                  <h4 id="location" class="w-full h-12 px-3 rounded mb-2 focus:outline-none focus:shadow-outline text-md shadow-md">La Tour Koeing, Pointe Aux Sables, Port Louis, Mu</h4>
+                </div>
+              </form>
+
+              <div class="w-full text-center">
+                <div class="justify-center"><img src="image/weather.png" width="170px" style="margin: 0 auto;" /></div>
+                <span id="temperature" class="text-6xl"></span><span id="unit">°C</span>
+                <div id="status" class="text-2xl"></div>
+              </div>
+
+              <table class="w-full text-center border-collapse">
+                <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+                <tbody>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light"><img width="30px" src="image/wind.png" style="margin: 0 auto;" /><span class="windSpeed"></span> <span class="windSpeedUnit">km/h</span></td>
+                    <td class="py-4 px-6 border-b border-grey-light"><img width="30px" src="image/pressure.png" style="margin: 0 auto;" /><span class="pressure"></span></td>
+                  </tr>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light"><img width="30px" src="image/windsock.png" style="margin: 0 auto;" /><span class="windDirection"></span></td>
+                    <td class="py-4 px-6 border-b border-grey-light"><img width="30px" src="image/humidity.png" style="margin: 0 auto;" /><span class="humidity"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="w-full text-center my-3">
+                <input id="celsius_F" type="checkbox" class="checkbox">
+                <label for="celsius_F" class="text-1xl">Celsius</label>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <script src="js/jquery.js"></script>
+      <script src="js/script.js"></script>
+
+
+    </div>
+
+    <div data-role="panel" data-display="push" data-theme="b" id="nav-panel">
+              <ul data-role="listview">
+                     <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+        <li><a href="#news" data-transition="turn">News</a></li>
+                        <li><a href="#events" data-transition="fade">Events</a></li>
+                        <li><a href="#results" data-transition="fade">Results</a></li>
+                        <li><a href="#timetable" data-transition="fade">Timetable</a></li>
+                        <li><a href="#location" data-transition="fade">Location</a></li>
+                        <li><a href="#weather" data-transition="fade">Weather</a></li>
+                        <li><a href="#password" data-transition="fade">Update Password</a></li>
+                
+      </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
+    </div>
+
+
+  </div>
+
+
+</body>
+
+
+</html>
