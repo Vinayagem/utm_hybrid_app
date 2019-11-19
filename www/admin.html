@@ -22,8 +22,8 @@
 <body>
   <script type="text/javascript" src="cordova.js"></script>
 
-<!-- adminlogin -->
-  <div data-role="page"  id="adminlogin" data-title="Admin">
+  <!-- adminlogin -->
+  <div data-role="page" id="adminlogin" data-title="Admin">
     <div data-role="header">
       <h1>Sign In</h1>
       <a href="#index" class="ui-btn ui-shadow ui-btn-right ui-icon-home ui-btn-icon-notext ui-corner-all">Home</a>
@@ -50,7 +50,7 @@
   <div data-role="page" data-theme="a" id="admindashboard" data-title="Dashboard">
 
     <div data-role="header">
-     <h4>Admin Panel</h4>
+      <h4>Admin Panel</h4>
     </div>
 
     <div role="main" class="ui-content" data-fullscreen="true">
@@ -93,19 +93,19 @@
 
     <script type="text/javascript">
       function logOut() {
-        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 1;
+        var getresultsurl = "http://192.168.43.204/coursework/logout.php?operation=" + 1;
         $.get(getresultsurl, function(data, status) {
           if (data != "Exist") {
-            location.href = '#adminlogin';
+            location.href = 'index.html';
           } else {}
         });
       }
 
       function check() {
-        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 2;
+        var getresultsurl = "http://192.168.43.204/coursework/logout.php?operation=" + 2;
         $.get(getresultsurl, function(data, status) {
           if (data != "Exist") {
-            location.href = '#adminlogin';
+            location.href = 'index.html';
           } else {}
         });
       }
@@ -132,9 +132,9 @@
         <label for="desc">Description: <span>*</span></label>
         <input id="desc" name="desc" type="text" placeholder="Description" />
 
-        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+        <input data-theme="b" type="button" onclick="submitnews()" value="submit" />
       </div>
-     <a onclick="location.href='#viewnews';" class="ui-btn">View Posted News</a>
+      <a onclick="location.href='#viewnews';" class="ui-btn">View Posted News</a>
 
     </div>
 
@@ -155,7 +155,7 @@
     </div>
 
     <script>
-      function submitMessage(title, desc) {
+      function submitnews() {
 
         alert("Message sent Successfully!");
 
@@ -163,7 +163,8 @@
 
         var desc = document.getElementById('desc').value;
 
-        var url = "http://localhost/coursework/postnews.php?title=" + title + " &desc=" + desc;
+        var url = "http://192.168.43.204/coursework/postnews.php?title=" + title + "&desc=" + desc;
+
 
 
         $.get(url, function(data, status) {
@@ -208,7 +209,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#viewnews", "pageinit", function() {
-        var getnewsurl = "http://localhost/coursework/news.php?operation=" + 1;
+        var getnewsurl = "http://192.168.43.204/coursework/news.php?operation=" + 1;
         $.get(getnewsurl, function(data, status) {
           var newsArr = JSON.parse(data);
           if (newsArr != "not found") {
@@ -230,7 +231,7 @@
   <!-- post event -->
   <div data-role="page" class="jqm-demos ui-responsive-panel" id="adminevents" data-title="Post News">
     <div data-role="header">
-      <h1>Post News </h1>
+      <h1>Post Events </h1>
       <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
       <a onclick="location.href='#admindashboard';" data-icon="back" data-iconpos="notext">Add</a>
 
@@ -248,9 +249,9 @@
         <label for="date">Schedule Date: <span>*</span></label>
         <input id="date" name="e_schedule_date" type="text" placeholder="yyyy-mon-dd" />
 
-        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+        <input data-theme="b" type="submit" onclick="submitevents()" value="Submit" />
       </div>
-     <a onclick="location.href='#viewevents';" class="ui-btn">View Posted News</a>
+      <a onclick="location.href='#viewevents';" class="ui-btn">View Posted Events</a>
 
     </div>
 
@@ -272,7 +273,7 @@
     </div>
 
     <script>
-      function submitMessage(title, desc, date) {
+      function submitevents() {
 
         alert("Message sent Successfully!");
 
@@ -282,8 +283,8 @@
 
         var date = document.getElementById('date').value;
 
-        var url = "http://localhost/coursework/postevents.php?title=" + title + " &desc=" + desc + " &date=" + date;
-        alert(url);
+        var url = "http://192.168.43.204/coursework/postevents.php?title=" + title + " &desc=" + desc + " &date=" + date;
+
 
         $.get(url, function(data, status) {
           alert("data: " + data);
@@ -327,7 +328,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#viewevents", "pageinit", function() {
-        var getnewsurl = "http://localhost/coursework/events.php?operation=" + 1;
+        var getnewsurl = "http://192.168.43.204/coursework/events.php?operation=" + 1;
         $.get(getnewsurl, function(data, status) {
           var newsArr = JSON.parse(data);
           if (newsArr != "not found") {
@@ -355,7 +356,7 @@
 
     </div>
 
-    <div role="main" class="ui-content" data-fullscreen="true" >
+    <div role="main" class="ui-content" data-fullscreen="true">
       <div class="ui-body ui-body-a ui-corner-all">
 
         <label for="fname">First Name : <span>*</span></label>
@@ -379,7 +380,7 @@
         <label for="s_password">Passowrd: <span>*</span></label>
         <input id="s_password" name="s_password" type="text" placeholder="e.g ********" />
 
-        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+        <input data-theme="b" type="submit" onclick="register()" value="Submit" />
       </div>
 
 
@@ -403,7 +404,7 @@
     </div>
 
     <script>
-      function submitMessage(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
+      function register(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
 
         alert("Message sent Successfully!");
 
@@ -416,8 +417,8 @@
         var s_password = document.getElementById('s_password').value;
 
 
-        var url = "http://localhost/coursework/register.php?s_fname=" + s_fname + " &s_lname=" + s_lname + " &s_gender=" + s_gender + " &s_phone=" + s_phone + " &s_email=" + s_email + " &stu_id=" + stu_id + " &s_password=" + s_password;
-        alert(url);
+        var url = "http://192.168.43.204/coursework/register.php?s_fname=" + s_fname + " &s_lname=" + s_lname + " &s_gender=" + s_gender + " &s_phone=" + s_phone + " &s_email=" + s_email + " &stu_id=" + stu_id + " &s_password=" + s_password;
+
 
         $.get(url, function(data, status) {
           alert("data: " + data);
@@ -461,7 +462,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#viewevents", "pageinit", function() {
-        var getnewsurl = "http://localhost/coursework/viewstudent.php?operation=" + 1;
+        var getnewsurl = "http://192.168.43.204/coursework/viewstudent.php?operation=" + 1;
         $.get(getnewsurl, function(data, status) {
           var newsArr = JSON.parse(data);
           if (newsArr != "not found") {
@@ -489,7 +490,7 @@
 
     </div>
 
-    <div role="main" class="ui-content" data-fullscreen="true" >
+    <div role="main" class="ui-content" data-fullscreen="true">
       <div class="ui-body ui-body-a ui-corner-all">
 
         <label for="t_semester">Semester : <span>*</span></label>
@@ -499,10 +500,10 @@
         <input id="t_year" name="t_year" type="text" placeholder="e.g 2019" />
 
         <label for="t_monday">Monday: <span>*</span></label>
-        <input id="t_monday" name="t_monday" type="text"  />
+        <input id="t_monday" name="t_monday" type="text" />
 
         <label for="t_tuesday">Tuesday: <span>*</span></label>
-        <input id="t_tuesday" name="t_tuesday" type="text"  />
+        <input id="t_tuesday" name="t_tuesday" type="text" />
 
         <label for="t_wednesday">Wednesday: <span>*</span></label>
         <input id="t_wednesday" name="t_wednesday" type="text" />
@@ -519,7 +520,7 @@
         <label for="t_sunday">Sunday: <span>*</span></label>
         <input id="t_sunday" name="t_sunday" type="text" />
 
-        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+        <input data-theme="b" type="submit" onclick="posttimetable()" value="Submit" />
       </div>
 
 
@@ -543,7 +544,7 @@
     </div>
 
     <script>
-      function submitMessage(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
+      function posttimetable(s_fname, s_lname, s_gender, s_phone, s_email, stu_id, s_password) {
 
         alert("Message sent Successfully!");
 
@@ -558,7 +559,7 @@
         var t_sunday = document.getElementById('t_sunday').value;
 
 
-        var url = "http://localhost/coursework/posttimetable.php?t_semester=" + t_semester + " &t_year=" + t_year + " &t_monday=" + t_monday + " &t_tuesday=" + t_tuesday + " &t_wednesday=" + t_wednesday + " &t_thursday=" + t_thursday + " &t_friday=" + t_friday + " &t_saturday=" + t_saturday+ " &t_sunday=" + t_sunday;
+        var url = "http://192.168.43.204/coursework/posttimetable.php?t_semester=" + t_semester + " &t_year=" + t_year + " &t_monday=" + t_monday + " &t_tuesday=" + t_tuesday + " &t_wednesday=" + t_wednesday + " &t_thursday=" + t_thursday + " &t_friday=" + t_friday + " &t_saturday=" + t_saturday+ " &t_sunday=" + t_sunday;
         alert(url);
 
         $.get(url, function(data, status) {
@@ -583,15 +584,15 @@
       <div class="ui-body ui-body-a ui-corner-all">
 
         <label for="r_semester">Semester : <span>*</span></label>
-        <input id="r_semester" name="r_semester" type="text" >
+        <input id="r_semester" name="r_semester" type="text">
 
         <label for="r_file">File: <span>*</span></label>
-        <input id="r_file" name="r_file" type="text"  />
+        <input id="r_file" name="r_file" type="text" />
 
         <label for="r_desc">Description: <span>*</span></label>
-        <input id="r_desc" name="r_desc" type="text"  />
+        <input id="r_desc" name="r_desc" type="text" />
 
-        <input data-theme="b" type="submit" onclick="submitMessage()" value="Submit" />
+        <input data-theme="b" type="submit" onclick="psotresult()" value="Submit" />
       </div>
 
 
@@ -614,7 +615,7 @@
     </div>
 
     <script>
-      function submitMessage(r_semester, r_file, r_desc) {
+      function postresult(r_semester, r_file, r_desc) {
 
         alert("Message sent Successfully!");
 
@@ -623,7 +624,7 @@
         var r_file = document.getElementById('r_file').value;
         var r_desc = document.getElementById('r_desc').value;
 
-        var url = "http://localhost/coursework/postresult.php?r_semester=" + r_semester + " &r_file=" + r_file + " &r_desc=" + r_desc;
+        var url = "http://192.168.43.204/coursework/postresult.php?r_semester=" + r_semester + " &r_file=" + r_file + " &r_desc=" + r_desc;
 
 
         $.get(url, function(data, status) {
@@ -634,10 +635,6 @@
     </script>
 
   </div>
-
-
-
-
 
 
 </body>

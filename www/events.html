@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>UTM</title>
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>
 
 </head>
 
-<body >
+<body onload="a()">
   <script type="text/javascript" src="cordova.js"></script>
 
   <div data-role="page" class="jqm-demos ui-responsive-panel" id="events" data-title="Events">
@@ -27,6 +27,27 @@
             <ul data-role="listview" data-inset="false" id="eventslist" data-role="listview" data-filter="true" data-filter-placeholder="Search...">
 
               </ul>
+
+          <script type="text/javascript">
+          //  $(document).delegate("#events", "pageinit", function() {
+          function a(){
+            var geteventsurl = "http://192.168.43.204/coursework/events.php?operation=" + 1;
+            //alert(geteventsurl);
+            $.get(geteventsurl, function(data, status) {
+              var eventsArr = JSON.parse(data);
+              if (eventsArr != "not found") {
+                for (var i = 0; i < eventsArr.length; i++) {
+                  $("#eventslist").prepend("<div data-role='collapsible'><h4>" + eventsArr[i + 1] + "</h4><h4>Posted On:  " + eventsArr[i + 3] + "</h4><p>Posted For:  " + eventsArr[i + 4] + ".</p><p>" + eventsArr[i + 2] + ".</p></div>");
+                  i = i + 4;
+                }
+
+              } else {}
+            });
+          }
+
+
+            //});
+          </script>
       </div>
 
     </div>
@@ -51,23 +72,7 @@
       <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
     </div>
 
-    <script type="text/javascript">
-      $(document).delegate("#events", "pageinit", function() {
-        var geteventsurl = "http://localhost/coursework/events.php?operation=" + 1;
-        alert(geteventsurl);
-        $.get(geteventsurl, function(data, status) {
-          var eventsArr = JSON.parse(data);
-          if (eventsArr != "not found") {
-            for (var i = 0; i < eventsArr.length; i++) {
-              $("#eventslist").prepend("<div data-role='collapsible'><h4>" + eventsArr[i + 1] + "</h4><h4>Posted On:  " + eventsArr[i + 3] + "</h4><p>Posted For:  " + eventsArr[i + 4] + ".</p><p>" + eventsArr[i + 2] + ".</p></div>");
-              i = i + 4;
-            }
 
-          } else {}
-        });
-
-      });
-    </script>
   </div>
 
 </body>

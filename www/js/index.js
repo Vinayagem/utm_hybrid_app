@@ -15,7 +15,7 @@ function login() {
 
 
           if (ValidateEmail(email) == true) {
-            var getresultsurl = "http://localhost/coursework/login.php?email=" + email + "&password=" + password;
+            var getresultsurl = "http://192.168.43.204/coursework/login.php?email=" + email + "&password=" + password;
             $.get(getresultsurl, function(data, status) {
 
               if (data == "Success") {
@@ -39,7 +39,7 @@ function login() {
       }
 
       function check() {
-        var getresultsurl = "http://localhost/coursework/login.php?operation=" + 11;
+        var getresultsurl = "http://192.168.43.204/coursework/login.php?operation=" + 11;
         $.get(getresultsurl, function(data, status) {
           if (data == "Exist") {
             location.href = '#dashboard';
@@ -57,11 +57,7 @@ function login() {
 
 
 // dashboard
-      $(window).load(function() {
-      $('.flexslider').flexslider({
-        animation: "slide"
-      });
-    });
+
 
     function myFunction() {
      var x = document.getElementById("myLinks");
@@ -88,7 +84,7 @@ function adminlogin() {
 
 
           if (ValidateEmail(email) == true) {
-            var getresultsurl = "http://localhost/coursework/login.php?email=" + email + "&password=" + password;
+            var getresultsurl = "http://192.168.43.204/coursework/login.php?email=" + email + "&password=" + password;
             $.get(getresultsurl, function(data, status) {
 
               if (data == "Success") {

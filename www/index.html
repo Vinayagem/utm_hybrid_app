@@ -36,7 +36,7 @@
 <body>
   <script type="text/javascript" src="cordova.js"></script>
 
-  <!-- Index.html -->
+  <!-- Index.html -->  
   <div data-role="page" data-theme="a" id="index" class="my-page">
     <div data-role="header" data-position="fixed">
       <h6>University of Technology</h6>
@@ -68,21 +68,21 @@
         </li>
         <li>
           <a href="events.html">
-                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <img src="image/a.jpg" class="ui-li-thumb">
                             <h2>Events</h2>
                             <p>Please click here for more details.</p>
                             <p class="ui-li-aside">Events 2019</p>
                         </a></li>
 
         <li><a href="news.html">
-                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <img src="image/a.jpg" class="ui-li-thumb">
                             <h2>News</h2>
                             <p>Please click here for more details.</p>
                             <p class="ui-li-aside">News 2019</p>
                         </a></li>
 
          <li><a href="courses.html">
-                            <img src="image/blackberry_10.png" class="ui-li-thumb">
+                            <img src="image/a.jpg" class="ui-li-thumb">
                             <h2>Courses</h2>
                             <p>Please click here for more details.</p>
                             <p class="ui-li-aside">Courses 2019</p>
@@ -195,7 +195,7 @@
 
     <script type="text/javascript">
       function logOut() {
-        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 1;
+        var getresultsurl = "http://192.168.43.204/coursework/logout.php?operation=" + 1;
         $.get(getresultsurl, function(data, status) {
           if (data != "Exist") {
             location.href = '#index';
@@ -204,13 +204,19 @@
       }
 
       function check() {
-        var getresultsurl = "http://localhost/coursework/logout.php?operation=" + 2;
+        var getresultsurl = "http://192.168.6.188/coursework/logout.php?operation=" + 2;
         $.get(getresultsurl, function(data, status) {
           if (data != "Exist") {
             location.href = '#index';
           } else {}
         });
       }
+
+      $(window).load(function() {
+      $('.flexslider').flexslider({
+        animation: "slide"
+      });
+    });
     </script>
 
     </script>
@@ -251,7 +257,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#news", "pageinit", function() {
-        var getnewsurl = "http://localhost/coursework/news.php?operation=" + 1;
+        var getnewsurl = "http://192.168.43.204/coursework/news.php?operation=" + 1;
         $.get(getnewsurl, function(data, status) {
           var newsArr = JSON.parse(data);
           if (newsArr != "not found") {
@@ -310,12 +316,12 @@
 
     <script type="text/javascript">
       $(document).delegate("#events", "pageinit", function() {
-        var geteventsurl = "http://localhost/coursework/events.php?operation=" + 1;
+        var geteventsurl = "http://192.168.43.204/coursework/events.php?operation=" + 1;
         $.get(geteventsurl, function(data, status) {
           var eventsArr = JSON.parse(data);
           if (eventsArr != "not found") {
             for (var i = 0; i < eventsArr.length; i++) {
-              $("#eventslist").prepend("<div data-role='collapsible'><h4>" + eventsArr[i + 1] + "</h4><h4>Posted On:  " + eventsArr[i + 3] + "</h4><p>Posted For:  " + eventsArr[i + 4] + ".</p><p>" + eventsArr[i + 2] + ".</p></div>");
+              $("#eventslist").prepend("<div data-role='collapsible'><h4><br>" + eventsArr[i + 1] + "</h4><h4>Posted On:  " + eventsArr[i + 3] + "</h4><p>Posted For:  " + eventsArr[i + 4] + ".</p><p>" + eventsArr[i + 2] + ".</p></div>");
               i = i + 4;
             }
 
@@ -365,7 +371,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#timetable", "pageinit", function() {
-        var gettimetablesurl = "http://localhost/coursework/timetable.php?operation=" + 1;
+        var gettimetablesurl = "http://192.168.43.204/coursework/timetable.php?operation=" + 1;
         $.get(gettimetablesurl, function(data, status) {
           var timetablesArr = JSON.parse(data);
           if (timetablesArr != "not found") {
@@ -544,7 +550,7 @@
         var newpass = document.getElementById('newpass').value;
         var renewpass = document.getElementById('renewpass').value;
 
-        var getcontacturl = "http://localhost/coursework/password.php?currpass=" + currpass.trim() + "&newpass=" + newpass.trim() + "&renewpass=" + renewpass.trim();
+        var getcontacturl = "http://192.168.43.204/coursework/password.php?currpass=" + currpass.trim() + "&newpass=" + newpass.trim() + "&renewpass=" + renewpass.trim();
         $.get(getcontacturl, function(data, status) {
           if (data == "Success") {
             $.alert({
@@ -626,7 +632,7 @@
 
         var message = document.getElementById('message').value;
 
-        var url = "http://localhost/coursework/contactprocess.php?subject=" + subject + " &email=" + email + " &message=" + message;
+        var url = "http://192.168.43.204/coursework/contactprocess.php?subject=" + subject + " &email=" + email + " &message=" + message;
 
         $.get(url, function(data, status) {
           alert("data: " + data);
@@ -677,7 +683,7 @@
 
     <script type="text/javascript">
       $(document).delegate("#results", "pageinit", function() {
-        var getresultsurl = "http://localhost/coursework/results.php?operation=" + 1;
+        var getresultsurl = "http://192.168.43.204/coursework/results.php?operation=" + 1;
         $.get(getresultsurl, function(data, status) {
           var resultsArr = JSON.parse(data);
           if (resultsArr != "not found") {

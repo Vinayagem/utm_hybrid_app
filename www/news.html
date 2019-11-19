@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>UTM</title>
-  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.mobile-1.4.5.js"></script>
 
 </head>
 
-<body>
+<body onload="a()">
   <script type="text/javascript" src="cordova.js"></script>
 
   <div data-role="page" class="jqm-demos ui-responsive-panel" id="news" data-title="News">
@@ -25,6 +25,29 @@
       <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
             <h4>Lastest News</h4>
             <ul data-role="listview" data-inset="false" id="newslist" data-role="listview" data-filter="true" data-filter-placeholder="Search..."></ul>
+
+        <script type="text/javascript">
+          //$(document).delegate("#news", "pageinit", function() {
+function a(){
+  var getnewsurl = "http://192.168.43.204/coursework/news.php?operation=" + 1;
+  $.get(getnewsurl, function(data, status) {
+    var newsArr = JSON.parse(data);
+    alert(data);
+    if (newsArr != "not found") {
+      for (var i = 0; i < newsArr.length; i++) {
+alert(data);
+        $("#newslist").append("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
+        i = i + 3;
+      }
+
+
+    } else {}
+  });
+}
+
+
+          //});
+        </script>
       </div>
     </div>
 
@@ -46,24 +69,7 @@
       <h1>Copyright © 2019 University Of Technology, Mauritius. All Rights Reserved.</h1>
     </div>
 
-    <script type="text/javascript">
-      $(document).delegate("#news", "pageinit", function() {
-        var getnewsurl = "http://localhost/coursework/news.php?operation=" + 1;
-        $.get(getnewsurl, function(data, status) {
-          var newsArr = JSON.parse(data);
-          if (newsArr != "not found") {
-            for (var i = 0; i < newsArr.length; i++) {
 
-              $("#newslist").prepend("<li><div data-role='collapsible' class='ui-content'><h4>" + newsArr[i + 1] + "</h4><h4>" + newsArr[i + 3] + "</h4><p>" + newsArr[i + 2] + ".</p></div></li>");
-              i = i + 3;
-            }
-
-
-          } else {}
-        });
-
-      });
-    </script>
 
   </div>
 
